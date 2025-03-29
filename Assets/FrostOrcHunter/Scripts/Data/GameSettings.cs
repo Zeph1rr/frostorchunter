@@ -38,7 +38,7 @@ namespace FrostOrcHunter.Scripts.Data
             SetFullscreen(settings.IsFullscreen);
             SetVolume(settings.Volume);
             SetLanguage(settings.Language);
-            Debug.Log($"{CurrentResolution}, {IsFullscreen}, {Volume}, {Language}");
+            //Debug.Log($"{CurrentResolution}, {IsFullscreen}, {Volume}, {Language}");
         }
 
         public void SetVolume(float value)
@@ -63,7 +63,7 @@ namespace FrostOrcHunter.Scripts.Data
         public void SetLanguage(string language)
         {
             _language = language;
-            Debug.Log(language);
+            //Debug.Log(language);
             LocalizationSystem.SetLanguage(language);
         }
     }

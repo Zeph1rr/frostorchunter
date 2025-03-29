@@ -25,7 +25,6 @@ namespace FrostOrcHunter.Scripts.GameRoot.Localization
             if (_text != null)
             {
                 _text.text = LocalizationSystem.Translate(_key);
-                Debug.Log(LocalizationSystem.Translate(_key));
             }
         }
     }

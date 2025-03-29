@@ -28,7 +28,7 @@ namespace FrostOrcHunter.Scripts.Tribe
         {
             Debug.Log("Tribe Entry");
             _gameData = _tribeContainer.Resolve<GameData>();
-            Debug.Log(JsonUtility.ToJson(_gameData));
+            //Debug.Log(JsonUtility.ToJson(_gameData));
         }
     }
 }

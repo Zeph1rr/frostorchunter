@@ -10,7 +10,7 @@ namespace FrostOrcHunter.Scripts.Data.Resource
     {
         [SerializeField] private List<Resource> _resources;
         public List<Resource> Resources => _resources;
-        public event EventHandler OnResourcesChanged;
+        public event Action OnResourcesChanged;
 
         public ResourceStorage(string[] keys)
         {
@@ -25,8 +25,8 @@ namespace FrostOrcHunter.Scripts.Data.Resource
 
         public void ResetResourceStorage(string[] keys)
         {
-            _resources = new();
-            foreach(string key in keys)
+            _resources = new List<Resource>();
+            foreach(var key in keys)
             {
                 Resources.Add(new Resource(key, 0));
             }
@@ -34,55 +34,70 @@ namespace FrostOrcHunter.Scripts.Data.Resource
 
         public void AddResource(string key, int value)
         {
-            Resource resource = GetResourceByName(key);
+            var resource = GetResourceByName(key);
             resource.IncreaseValue(value);
-            OnResourcesChanged?.Invoke(this, EventArgs.Empty);
+            OnResourcesChanged?.Invoke();
         }
 
         public void AddResources(Dictionary<string,int> resources)
         {
-            foreach (string key in resources.Keys)
+            foreach (var key in resources.Keys)
             {
-                Resource resource = GetResourceByName(key);
+                var resource = GetResourceByName(key);
                 resource.IncreaseValue(resources[key]);
             }
-            OnResourcesChanged?.Invoke(this, EventArgs.Empty);
+            OnResourcesChanged?.Invoke();
         }
 
         public void AddResources(List<Resource> resources)
         {
-            foreach (Resource resourceEntry in resources)
+            foreach (var resourceEntry in resources)
             {
-                Resource resource = GetResourceByName(resourceEntry.Name);
+                var resource = GetResourceByName(resourceEntry.Name);
                 resource.IncreaseValue(resourceEntry.Value);
             }
-            OnResourcesChanged?.Invoke(this, EventArgs.Empty);
+            OnResourcesChanged?.Invoke();
         }
 
         public void SpendResource(string key, int value)
         {
-            Resource resource = GetResourceByName(key);
+            var resource = GetResourceByName(key);
             resource.DecreaseValue(value);
-            OnResourcesChanged?.Invoke(this, EventArgs.Empty);
+            OnResourcesChanged?.Invoke();
         }
 
         public void SpendResources(List<Resource> resources)
         {
-            foreach (Resource resourceEntry in resources)
+            foreach (var resourceEntry in resources)
             {
                 Resource resource = GetResourceByName(resourceEntry.Name);
                 resource.DecreaseValue(resourceEntry.Value);
             }
-            OnResourcesChanged?.Invoke(this, EventArgs.Empty);
+            OnResourcesChanged?.Invoke();
+        }
+
+        public void Buy(string key, int value, Action onSuccess)
+        {
+            var resource = GetResourceByName(key);
+            try
+            {
+                resource.DecreaseValue(value);
+                onSuccess?.Invoke();
+                OnResourcesChanged?.Invoke();
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Debug.Log(e);
+            }
         }
 
         public void DecreaseAll(float multyiplier)
         {
-            foreach(Resource resource in Resources)
+            foreach(var resource in Resources)
             {
                 resource.DecreaseByMultiplyer(multyiplier);
             }
-            OnResourcesChanged?.Invoke(this, EventArgs.Empty);
+            OnResourcesChanged?.Invoke();
         }
 
         public Resource GetResourceByName(string name)
@@ -97,7 +112,7 @@ namespace FrostOrcHunter.Scripts.Data.Resource
 
         public void PrintResources()
         {
-            foreach(Resource resource in _resources)
+            foreach(var resource in _resources)
             {
                 Debug.Log($"{resource.Name}: {resource.Value}");
             }

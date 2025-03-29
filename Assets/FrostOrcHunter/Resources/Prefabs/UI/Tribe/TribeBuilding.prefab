@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3154849161419574560}
   - component: {fileID: -5159454057548944069}
   m_Layer: 0
-  m_Name: camp_building
+  m_Name: TribeBuilding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
