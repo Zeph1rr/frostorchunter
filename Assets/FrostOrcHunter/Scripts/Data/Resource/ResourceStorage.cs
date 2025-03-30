@@ -91,11 +91,18 @@ namespace FrostOrcHunter.Scripts.Data.Resource
             }
         }
 
-        public void DecreaseAll(float multyiplier)
+        public void DecreaseResource(string key, float multiplier)
+        {
+            var resource = GetResourceByName(key);
+            resource.DecreaseByMultiplyer(multiplier);
+            OnResourcesChanged?.Invoke();
+        }
+
+        public void DecreaseAll(float multiplier)
         {
             foreach(var resource in Resources)
             {
-                resource.DecreaseByMultiplyer(multyiplier);
+                resource.DecreaseByMultiplyer(multiplier);
             }
             OnResourcesChanged?.Invoke();
         }

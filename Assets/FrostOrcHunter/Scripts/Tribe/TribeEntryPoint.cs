@@ -1,5 +1,6 @@
 ﻿using FrostOrcHunter.Scripts.Data;
 using FrostOrcHunter.Scripts.GameRoot.UI;
+using FrostOrcHunter.Scripts.Tribe.RandomEvents;
 using FrostOrcHunter.Scripts.Tribe.UI;
 using UnityEngine;
 using Zeph1rrGameBase.Scripts.Core.DI;
@@ -28,7 +29,9 @@ namespace FrostOrcHunter.Scripts.Tribe
         {
             Debug.Log("Tribe Entry");
             _gameData = _tribeContainer.Resolve<GameData>();
-            //Debug.Log(JsonUtility.ToJson(_gameData));
+            // var randomEvent = new HungryTribeEvent("Племя голодно", "Спиздили 10% еды");
+            // randomEvent.Run(_gameData);
+            Debug.Log(JsonUtility.ToJson(_gameData));
         }
     }
 }
