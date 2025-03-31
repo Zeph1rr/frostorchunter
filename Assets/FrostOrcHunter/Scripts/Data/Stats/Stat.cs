@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace FrostOrcHunter.Scripts.Data.Stats
 {
@@ -39,6 +40,7 @@ namespace FrostOrcHunter.Scripts.Data.Stats
 
         public void Upgrade()
         {
+            GetNextValue();
             _level += 1;
         }
     }

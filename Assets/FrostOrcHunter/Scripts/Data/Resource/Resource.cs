@@ -46,7 +46,7 @@ namespace FrostOrcHunter.Scripts.Data.Resource
             {
                 throw new ArgumentOutOfRangeException("Value should be between 0 and 1!");
             }
-            _value = Mathf.RoundToInt(_value * multyiplier);
+            _value = Mathf.FloorToInt(_value * multyiplier);
         }
     }
 }

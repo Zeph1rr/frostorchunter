@@ -1,5 +1,6 @@
 ﻿using System;
 using FrostOrcHunter.Scripts.GameRoot.Localization;
+using FrostOrcHunter.Scripts.Tribe.RandomEvents;
 using UnityEngine;
 
 namespace FrostOrcHunter.Scripts.Data
@@ -65,6 +66,7 @@ namespace FrostOrcHunter.Scripts.Data
             _language = language;
             //Debug.Log(language);
             LocalizationSystem.SetLanguage(language);
+            RandomEventSystem.SetLanguage(language);
         }
     }
 }

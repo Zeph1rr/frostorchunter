@@ -15,16 +15,6 @@ namespace FrostOrcHunter.Scripts.Tribe.UI
     {
         private TribeUIRoot _uiRoot;
         private GameData _gameData;
-
-        private List<RandomEvent> _randomEvents = new List<RandomEvent>()
-        {
-            new HungryTribeEvent(
-                "Племя голодает", 
-                "У костра к вам подходит старый седой орк, уставший и слабый.\n- Умоляю, еды...\n",
-                "Вы протягиваете старику кусок вяленого мяса из своих запасов. Он отворачивается и чавкая впивается в мясо зубами.\nЧерез пару минут к вам подходит еще несколько жителей племени. Вы кормите всех, а вождь одобрительно смотрит на вас через всполохи пламени костра.\n\n\nОбщее количество еды уменьшено на 10%",
-                "Вам нечего ему предложить. Растроенный старик шаркая по снегу уходит прочь..."
-                )
-        };
         
         public void Initialize(DIContainer container)
         {
@@ -39,15 +29,8 @@ namespace FrostOrcHunter.Scripts.Tribe.UI
                 button.onClick.AddListener(CreateUI);
             if (gameObject.name == CampBuildings.Firepit.ToString())
             {
-                button.onClick.AddListener(StartRandomEvent);
+                button.onClick.AddListener(() => _uiRoot.RandomEvent?.Run(_gameData));
             }
-        }
-
-        private void StartRandomEvent()
-        {
-            var random = new System.Random();
-            var randomEvent = _randomEvents.OrderBy(x => random.Next()).Take(1);
-            randomEvent.First().Run(_gameData);
         }
 
         private void CreateUI()

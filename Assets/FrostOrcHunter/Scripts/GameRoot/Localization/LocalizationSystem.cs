@@ -12,7 +12,7 @@ namespace FrostOrcHunter.Scripts.GameRoot.Localization
         private static void LoadTranslations()
         {
             TextAsset jsonFile = Resources.Load<TextAsset>("Localization/translations");
-            if (jsonFile == null)
+            if (!jsonFile)
             {
                 Debug.LogError("Translations file not found!");
                 return;

@@ -4,9 +4,12 @@ using System.Linq;
 using FrostOrcHunter.Scripts.Data;
 using FrostOrcHunter.Scripts.Data.Enums;
 using FrostOrcHunter.Scripts.GameRoot.UI.Resource;
+using FrostOrcHunter.Scripts.Tribe.RandomEvents;
+using FrostOrcHunter.Scripts.Tribe.RandomEvents.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zeph1rrGameBase.Scripts.Core.DI;
+using Random = UnityEngine.Random;
 
 namespace FrostOrcHunter.Scripts.Tribe.UI
 {
@@ -16,12 +19,21 @@ namespace FrostOrcHunter.Scripts.Tribe.UI
         [SerializeField] private ResourceStorageView _resourceStorageView;
         [SerializeField] private List<TribeBuilding> _buildings;
         
+        public RandomEvent RandomEvent { get; private set; }
+        
         private InputActions _inputActions;
         private GameData _gameData;
+
+        private List<RandomEvent> _randomEvents;
         
         public void Initialize(DIContainer container)
         {
             _gameData = container.Resolve<GameData>();
+            _randomEvents = new List<RandomEvent>
+            {
+                RandomEventSystem.CreateEvent<HungryTribeEvent>(),
+                RandomEventSystem.CreateEvent<UpgradeStaminaEvent>(),
+            };
             
             _tribeMenu.Initialize(container);
             container.RegisterInstance(this);
@@ -30,6 +42,12 @@ namespace FrostOrcHunter.Scripts.Tribe.UI
             _inputActions.Enable();
             _inputActions.Global.Escape.performed += ToggleTribeMenu;
 
+            if (Random.Range(0, 100) < 100)
+            {
+                RandomEvent = _randomEvents[Random.Range(0, _randomEvents.Count)];
+                Debug.Log($"RandomEvent: {RandomEvent}");
+            }
+            
             foreach (var tribeBuilding in _buildings)
             {
                 tribeBuilding.gameObject.SetActive(false);

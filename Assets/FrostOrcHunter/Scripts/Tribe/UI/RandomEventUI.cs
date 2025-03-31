@@ -11,10 +11,10 @@ namespace FrostOrcHunter.Scripts.Tribe.UI
         [SerializeField] private TextMeshProUGUI _description;
         [SerializeField] private Button _button;
         
-        public void Initialize(RandomEvent randomEvent)
+        public void Initialize(string title, string description)
         {
-            _title.text = randomEvent.Title;
-            _description.text = randomEvent.Description;
+            _title.text = title;
+            _description.text = description;
             _button.onClick.AddListener(() => Destroy(gameObject));
         }
     }
