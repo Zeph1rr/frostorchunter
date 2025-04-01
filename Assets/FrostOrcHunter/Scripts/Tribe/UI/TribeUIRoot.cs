@@ -42,7 +42,7 @@ namespace FrostOrcHunter.Scripts.Tribe.UI
             _inputActions.Enable();
             _inputActions.Global.Escape.performed += ToggleTribeMenu;
 
-            if (Random.Range(0, 100) < 100)
+            if (Random.Range(0, 100) < 30)
             {
                 RandomEvent = _randomEvents[Random.Range(0, _randomEvents.Count)];
                 Debug.Log($"RandomEvent: {RandomEvent}");
@@ -72,9 +72,9 @@ namespace FrostOrcHunter.Scripts.Tribe.UI
             _tribeMenu.Toggle();
         }
 
-        public void AttachUIElement(GameObject uiElement)
+        public void RemoveRandomEvent()
         {
-            uiElement.transform.SetParent(transform);
+            RandomEvent = null;
         }
     }
 }
