@@ -238,9 +238,9 @@ RectTransform:
   - {fileID: 8189031926379153442}
   - {fileID: 2620825583015127319}
   - {fileID: 565504041918268051}
-  - {fileID: 8427141541998592241}
   - {fileID: 1509623109423573139}
   - {fileID: 7566867842113588179}
+  - {fileID: 8427141541998592241}
   - {fileID: 7034901735935965246}
   - {fileID: 1103100171724055185}
   m_Father: {fileID: 0}
@@ -343,7 +343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1968891059551501018, guid: 91be9bf3f42ca984da93f6d2d41e0ead, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -345
+      value: -335
       objectReference: {fileID: 0}
     - target: {fileID: 1968891059551501018, guid: 91be9bf3f42ca984da93f6d2d41e0ead, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -372,6 +372,10 @@ PrefabInstance:
     - target: {fileID: 7221115584310248093, guid: 91be9bf3f42ca984da93f6d2d41e0ead, type: 3}
       propertyPath: m_Name
       value: PriestHut
+      objectReference: {fileID: 0}
+    - target: {fileID: 7221115584310248093, guid: 91be9bf3f42ca984da93f6d2d41e0ead, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

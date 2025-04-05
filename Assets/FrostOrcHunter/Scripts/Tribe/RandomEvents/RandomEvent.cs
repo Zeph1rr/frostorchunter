@@ -1,5 +1,6 @@
 ﻿using FrostOrcHunter.Scripts.Data;
 using FrostOrcHunter.Scripts.Tribe.UI;
+using FrostOrcHunter.Scripts.Tribe.UI.TribeBuildings;
 using UnityEngine;
 using UnityEngine.Rendering;
 

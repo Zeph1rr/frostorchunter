@@ -1,9 +1,8 @@
-﻿using FrostOrcHunter.Scripts.Tribe.RandomEvents;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FrostOrcHunter.Scripts.Tribe.UI
+namespace FrostOrcHunter.Scripts.Tribe.UI.TribeBuildings
 {
     public class RandomEventUI : MonoBehaviour
     {

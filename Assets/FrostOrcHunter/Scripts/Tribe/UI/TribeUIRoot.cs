@@ -23,22 +23,28 @@ namespace FrostOrcHunter.Scripts.Tribe.UI
         
         private InputActions _inputActions;
         private GameData _gameData;
+        private DIContainer _container;
 
         private List<RandomEvent> _randomEvents;
         
         public void Initialize(DIContainer container)
         {
-            _gameData = container.Resolve<GameData>();
+            _container = container;
+            
+            _gameData = _container.Resolve<GameData>();
+            _gameData.OnCampBuildingsAdd += InitializeTribeBuildings;
+            _gameData.OnFirstHunt += InitializeTribeBuildings;
+            
             _randomEvents = new List<RandomEvent>
             {
                 RandomEventSystem.CreateEvent<HungryTribeEvent>(),
                 RandomEventSystem.CreateEvent<UpgradeStaminaEvent>(),
             };
             
-            _tribeMenu.Initialize(container);
-            container.RegisterInstance(this);
+            _tribeMenu.Initialize(_container);
+            _container.RegisterInstance(this);
             
-            _inputActions = container.Resolve<InputActions>();
+            _inputActions = _container.Resolve<InputActions>();
             _inputActions.Enable();
             _inputActions.Global.Escape.performed += ToggleTribeMenu;
 
@@ -47,16 +53,8 @@ namespace FrostOrcHunter.Scripts.Tribe.UI
                 RandomEvent = _randomEvents[Random.Range(0, _randomEvents.Count)];
                 Debug.Log($"RandomEvent: {RandomEvent}");
             }
-            
-            foreach (var tribeBuilding in _buildings)
-            {
-                tribeBuilding.gameObject.SetActive(false);
-                if (_gameData.CampBuildings.Contains((CampBuildings)Enum.Parse(typeof(CampBuildings), tribeBuilding.name)))
-                {
-                    tribeBuilding.gameObject.SetActive(true);
-                    tribeBuilding.Initialize(container);
-                }
-            }
+
+            InitializeTribeBuildings();
             
             _resourceStorageView.Initialize(_gameData.ResourceStorage);
         }
@@ -65,6 +63,21 @@ namespace FrostOrcHunter.Scripts.Tribe.UI
         {
             _inputActions.Disable();
             _inputActions.Global.Escape.performed -= ToggleTribeMenu;
+            _gameData.OnCampBuildingsAdd -= InitializeTribeBuildings;
+            _gameData.OnFirstHunt -= InitializeTribeBuildings;
+        }
+
+        private void InitializeTribeBuildings()
+        {
+            foreach (var tribeBuilding in _buildings)
+            {
+                tribeBuilding.gameObject.SetActive(false);
+                if (_gameData.CampBuildings.Contains((CampBuildings)Enum.Parse(typeof(CampBuildings), tribeBuilding.name)))
+                {
+                    tribeBuilding.gameObject.SetActive(true);
+                    tribeBuilding.Initialize(_container);
+                }
+            }
         }
 
         private void ToggleTribeMenu(InputAction.CallbackContext obj)
