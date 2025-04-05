@@ -30,6 +30,12 @@ jobs:
             Library-${{ env.PROJECT_NAME }}-
             Library-
             
+      - name: debug prints
+        run: |
+          echo ${{ secrets.UNITY_LICENSE }}
+          echo ${{ secrets.UNITY_EMAIL }}
+          echo ${{ secrets.UNITY_PASSWORD }}
+            
       - uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
