@@ -32,9 +32,9 @@ jobs:
             
       - name: debug prints
         run: |
-          echo ${{ secrets.UNITY_LICENSE }}
-          echo ${{ secrets.UNITY_EMAIL }}
-          echo ${{ secrets.UNITY_PASSWORD }}
+          echo "${{ secrets.UNITY_LICENSE }}"
+          echo "${{ secrets.UNITY_EMAIL }}"
+          echo "${{ secrets.UNITY_PASSWORD }}"
             
       - uses: game-ci/unity-builder@v4
         env:
