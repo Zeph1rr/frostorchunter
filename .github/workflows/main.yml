@@ -28,12 +28,26 @@ jobs:
           restore-keys: Library-
           
       - name: Configure Git credentials
+        env:
+          USERNAME: ${{ secrets.GH_USERNAME }}
+          TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config --global credential.helper store
 
-          echo "https://${{ secrets.GH_USERNAME }}:${{ secrets.GH_TOKEN }}@github.com" >> ~/.git-credentials
+          echo "https://${USERNAME}:${TOKEN}@github.com" >> ~/.git-credentials
 
-          cat ~/.git-credentials
+          if [ -f ~/.git-credentials ]; then
+            echo "Git credentials configured successfully"
+            # Безопасная проверка (не выводим содержимое)
+            ls -la ~/.git-credentials
+          else
+            echo "Error: Failed to create git-credentials file"
+            exit 1
+          fi
+          
+      - name: Test Git access
+        run: |
+          git ls-remote https://github.com/zeph1rr/zeph1rrgamebase.git HEAD
             
       - uses: game-ci/unity-builder@v4
         env:
