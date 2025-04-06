@@ -26,6 +26,14 @@ jobs:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
+          
+      - name: Configure Git credentials
+        run: |
+          git config --global credential.helper store
+
+          echo "https://${{ secrets.GH_USERNAME }}:${{ secrets.GH_TOKEN }}@github.com" >> ~/.git-credentials
+
+          cat ~/.git-credentials
             
       - uses: game-ci/unity-builder@v4
         env:

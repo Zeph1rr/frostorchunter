@@ -3,6 +3,7 @@ using FrostOrcHunter.Scripts.Data;
 using FrostOrcHunter.Scripts.GameRoot.Localization;
 using FrostOrcHunter.Scripts.GameRoot.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zeph1rrGameBase.Scripts.Core.DI;
 using Zeph1rrGameBase.Scripts.Core.SaveLoadSystem;
@@ -20,7 +21,7 @@ namespace FrostOrcHunter.Scripts.MainMenu.UI
         private List<string> _languages;
         private GameSettings _settings;
         private PlayerPrefsSaveLoadSystem _saveLoadSystem;
-
+        
         public void Initialize(DIContainer container)
         {
             _settings = container.Resolve<GameSettings>();
