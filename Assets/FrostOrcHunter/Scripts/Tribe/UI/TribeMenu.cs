@@ -38,12 +38,13 @@ namespace FrostOrcHunter.Scripts.Tribe.UI
 
         public void QuitGame()
         {
-            Application.Quit();
+            GameEntryPoint.Instance.QuitGame();
         }
 
         public void SaveGame()
         {
             _saveLoadSystem.Save("hunter", _gameData);
+            Debug.Log("Game saved");
         }
 
         public void Toggle()

@@ -51,7 +51,7 @@ namespace FrostOrcHunter.Scripts.MainMenu.UI
         
         public void QuitGame()
         {
-            Application.Quit();
+            GameEntryPoint.Instance.QuitGame();
         }
 
         public void ReturnToMainMenu()
