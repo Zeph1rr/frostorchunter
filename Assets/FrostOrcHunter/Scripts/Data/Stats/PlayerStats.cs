@@ -46,5 +46,10 @@ namespace FrostOrcHunter.Scripts.Data.Stats
                 _stats.Add(new Stat(stat, 0, 3));
             }
         }
+
+        public int GetAverageStatLevel()
+        {
+            return Mathf.RoundToInt(_stats.Sum(stat => stat.Level) / _stats.Count);
+        }
     }
 }

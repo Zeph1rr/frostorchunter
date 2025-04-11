@@ -69,6 +69,12 @@ namespace FrostOrcHunter.Scripts.Tribe.UI
 
             if (gameObject.name == CampBuildings.HunterHut.ToString())
             {
+                var image = GetComponent<Image>();
+                var averageStatLevel = _gameData.PlayerStats.GetAverageStatLevel();
+                if (averageStatLevel > 7)
+                    averageStatLevel = 7;
+                Debug.Log(averageStatLevel);
+                image.sprite = Resources.Load<Sprite>($"Images/Huts/hut{averageStatLevel}");
                 _mark.gameObject.SetActive(!_gameData.PressedBuildings.Contains(Enum.Parse<CampBuildings>(gameObject.name)));
                 button.onClick.AddListener(CreateHunterHutUi);
             }

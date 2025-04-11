@@ -44,6 +44,8 @@ namespace FrostOrcHunter.Scripts.GameRoot
             
             var gameSettings = new GameSettings(saveLoadSystem.Load("settings", new GameSettings()));
             _rootContainer.RegisterInstance(gameSettings);
+            
+            _uiRoot.SetMusicVolume(gameSettings.Volume);
         }
 
         private void RunGame()
@@ -86,6 +88,11 @@ namespace FrostOrcHunter.Scripts.GameRoot
             yield return new WaitForSeconds(1f);
             
             _currentScene.StartScene();
+
+            if (sceneName != Scenes.BOOT && sceneName != Scenes.MAIN_MENU)
+            {
+                _uiRoot.StopMusic();
+            }
             
             _uiRoot.HideLoadingScreen();
         }

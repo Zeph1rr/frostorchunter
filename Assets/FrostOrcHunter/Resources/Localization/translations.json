@@ -46,7 +46,8 @@
                 { "key": "Defence_upgrade", "value": "Armor Fitting"},
                 { "key": "Speed_upgrade", "value": "Leap Across an Ice Chasm"},
                 { "key": "CritChance_upgrade", "value": "Training in the Dark" },
-                { "key": "CritMultiplyer_upgrade", "value": "Prayer to the Spirit of the Wolf"}
+                { "key": "CritMultiplyer_upgrade", "value": "Prayer to the Spirit of the Wolf"},
+                { "key": "loading", "value": "Loading..."}
             ]
         },
         {
@@ -95,7 +96,8 @@
                 { "key": "Defence_upgrade", "value": "Подгонка доспеха"},
                 { "key": "Speed_upgrade", "value": "Прыжок через ледяную пропасть"},
                 { "key": "CritChance_upgrade", "value": "Тренировка в темноте"},
-                { "key": "CritMultiplyer_upgrade", "value": "Молитва духу волка"}
+                { "key": "CritMultiplyer_upgrade", "value": "Молитва духу волка"},
+                { "key": "loading", "value": "Загрузка..."}
             ]
         }
     ]

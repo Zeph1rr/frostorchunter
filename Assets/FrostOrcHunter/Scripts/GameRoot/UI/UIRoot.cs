@@ -6,6 +6,7 @@ namespace FrostOrcHunter.Scripts.GameRoot.UI
     {
         [SerializeField] private GameObject _loadingScreen;
         [SerializeField] private Transform _uiSceneContainer;
+        [SerializeField] private AudioSource _music;
 
         public void AttachSceneUI(GameObject uiScene)
         {
@@ -25,6 +26,28 @@ namespace FrostOrcHunter.Scripts.GameRoot.UI
         public void ShowLoadingScreen()
         {
             _loadingScreen.SetActive(true);
+            if (!_music.isPlaying)
+                StartMusic();
+        }
+
+        public void StartMusic()
+        {
+            _music.Play();
+        }
+
+        public void PauseMusic()
+        {
+            _music.Pause();
+        }
+
+        public void StopMusic()
+        {
+            _music.Stop();
+        }
+
+        public void SetMusicVolume(float volume)
+        {
+            _music.volume = volume;
         }
             
         private void Awake()
